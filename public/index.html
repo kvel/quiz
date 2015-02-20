@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="kvelQuizApp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>KVel Quiz App</title>
+
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="stylesheets/screen.css">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="js/data/users.js"></script>
+    <script src="js/core.js"></script> <!-- load our main application -->
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="js/controllers/login-reg-controller.js"></script>
+    <script src="js/controllers/quiz-controller.js"></script>
+	<script src="js/services/login-service.js"></script>
+    <script src="js/services/quiz-service.js"></script>
+	
+
+</head>
+<body ng-app="kvelQuizApp" data-ng-controller="MainCtrl">
+    <div class="welcome" data-ng-if="$root.cuser.uname">
+            Welcome {{$root.cuser.uname}} <span data-ng-click="logout()" class="links">logout</span>
+        </div>
+	<div class="container center-box">        
+        <div ng-view></div>
+    </div>
+
+</body>
+</html>

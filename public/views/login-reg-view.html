@@ -1,0 +1,24 @@
+ <div class="login-view" data-ng-controller="LoginRegCtrl" data-ng-init="login.mode='signin'">
+    <div class="menus">
+    <span class="links {{login.mode=='signin'?'strong': ''}}" data-ng-click="login.mode='signin'"> Sign In </span> <span class="links  {{login.mode=='register'?'strong': ''}}" data-ng-click="login.mode='register'"> Register </span></div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Please sign in</h3>
+        </div>
+        <div class="panel-body">
+            <form accept-charset="UTF-8" role="form">
+            <fieldset>
+                <div class="form-group">
+                    <input class="form-control" placeholder="E-mail" name="email" data-ng-model="user.uname" type="text" data-ng-blur="login.uee=checkUser()">
+                    <span data-ng-if="login.uee">User Name already exist!</span>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Password" name="password" type="password" data-ng-model="user.pass" value="">
+                </div>		{{loginErrMsg}}	    		
+                <input class="btn btn-lg btn-purple btn-block" type="submit" value="Login" data-ng-if="login.mode=='signin'" data-ng-click="doLogin()" data-ng-disabled="!user.uname || !user.pass">
+                <input class="btn btn-lg btn-purple btn-block" type="submit" value="Register" data-ng-if="login.mode=='register'" data-ng-click="doReg()" data-ng-disabled="!user.uname || !user.pass || login.uee">
+            </fieldset>
+            </form>
+        </div>
+    </div>
+</div>    

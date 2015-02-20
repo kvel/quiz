@@ -1,0 +1,23 @@
+<div data-ng-controller="QuizCtrl">
+    {{message}}
+    <div data-ng-if="currentQuestion==null && score" class="score">Your Score: {{score}}%</div>
+    <div class="question" data-ng-if="currentQuestion">        
+        <span>{{cIndex+1}}. {{currentQuestion.question}}</span>
+        <pre class="code" ng-if="currentQuestion.code" ng-bind-html="currentQuestion.htmlSafe"></pre>
+        <div class="answers">
+            <section data-ng-repeat="options in currentQuestion.options">
+                <input type="radio" name="{{currentQuestion.question}}" ng-value="options.label" ng-model="currentQuestion.selectedAnswer" id="{{options.label}}" required /><label for="{{options.label}}">{{options.label}}</label>
+            </section>
+            <input class="btn btn-lg btn-purple btn-block" type="button" value="Continue" data-ng-if="cIndex<qlen-1" data-ng-click="verifyAndLoad()" data-ng-disabled="!currentQuestion.selectedAnswer">
+            <input class="btn btn-lg btn-purple btn-block" type="button" value="Submit" data-ng-if="cIndex==qlen-1" data-ng-click="verifyAndShowResult()" data-ng-disabled="!currentQuestion.selectedAnswer">
+        </div>
+    </div>
+    <div class="result" data-ng-if="currentQuestion==null">        
+         <div class="question" data-ng-repeat="r in result track by $index">
+            <span>{{$index+1}}. {{r.q}}</span><br/>
+             <div class="res" ng-class="{ 'correct': r.a==r.c, 'incorrect': r.a!=r.c }">{{r.a}}</div>
+             <div class="res correct-one" data-ng-if="r.a!=r.c">Correct Answer: {{r.c}}</div>             
+        </div>
+        <input type="button" value="Restart" class="btn btn-lg btn-purple btn-block" data-ng-click="init()">
+    </div>
+</div>
